@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Sakila</title>
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="/styles/lisaaElokuva.css"
+        />
+        <link rel="icon" type="image/png" href="/images/whiteLogo.png" />
+    </head>
+    <body>
+        <div class="header">
+            <div class="logo">
+                <a href="/">
+                    <img
+                        src="/images/blueLogo.svg"
+                        alt="Valkoinen logo"
+                        id="headerLogo"
+                    />
+                </a>
+            </div>
+            <div class="links">
+                <a href="/"><button>Pääsivulle</button></a>
+                <a href="/suodatin"><button>Kaikki elokuvat</button></a>
+                <div class="dropdown">
+                    <a><button>Kategoriat</button></a>
+                    <div class="dropdown-content">
+                        <a href="/toiminta">Toiminta</a>
+                        <a href="/animaatio">Animaatio</a>
+                        <a href="/lapsi">Lapsi</a>
+                        <a href="/klassikko">Klassikko</a>
+                        <a href="/komedia">Komedia</a>
+                        <a href="/dokumentti">Dokumentti</a>
+                        <a href="/draama">Draama</a>
+                        <a href="/perhe">Perhe</a>
+                        <a href="/ulkomaalainen">Ulkomaalaiset</a>
+                        <a href="/pelit">Pelit</a>
+                        <a href="/kauhu">Kauhu</a>
+                        <a href="/musiikki">Musiikki</a>
+                        <a href="/uusi">Uutuudet</a>
+                        <a href="/scifi">Sci-Fi</a>
+                        <a href="/urheilu">Urheilu</a>
+                        <a href="/matkailu">Matkailu</a>
+                    </div>
+                </div>
+                <a href="/lisaaElokuva"><button>Lisää elokuva</button></a>
+            </div>
+            <div class="search-container">
+                <form action="/hakuTulos">
+                    <input
+                        type="text"
+                        placeholder="Hae elokuva(t)"
+                        name="search"
+                    />
+                    <button type="submit">HAE</button>
+                </form>
+            </div>
+        </div>
+        <div class="elokuvaLisays">
+            <h2 class="otsikko"><%= otsikko %></h2>
+            <form action="/talletatiedot" method="POST" id="elokuvaForm">
+                <div>
+                    <label for="title">Nimi:</label>
+                    <input type="text" id="title" name="title" />
+                </div>
+                <div>
+                    <label for="description">Kuvaus:</label>
+                    <input type="text" id="description" name="description" />
+                </div>
+                <div>
+                    <label for="category">Kategoria:</label>
+                    <select id="category" name="category">
+                        <option value="1">Toiminta</option>
+                        <option value="2">Animaatio</option>
+                        <option value="3">Lapsi</option>
+                        <option value="4">Klassikko</option>
+                        <option value="5">Komedia</option>
+                        <option value="6">Dokumentti</option>
+                        <option value="7">Draama</option>
+                        <option value="8">Perhe</option>
+                        <option value="9">Ulkomaalaiset</option>
+                        <option value="10">Pelit</option>
+                        <option value="11">Kauhu</option>
+                        <option value="12">Musiikki</option>
+                        <option value="13">Uutuudet</option>
+                        <option value="14">Sci-Fi</option>
+                        <option value="15">Urheilu</option>
+                        <option value="16">Matkailu</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="release_year">Julkaisuvuosi:</label>
+                    <input
+                        type="number"
+                        min="1800"
+                        max="2022"
+                        id="release_year"
+                        name="release_year"
+                    />
+                </div>
+                <div>
+                    <label for="language_id">Kieli:</label>
+                    <select id="language_id" name="language_id">
+                        <option value="1">English</option>
+                        <option value="2">Italian</option>
+                        <option value="3">Japanese</option>
+                        <option value="4">Mandarin</option>
+                        <option value="5">French</option>
+                        <option value="6">German</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="rental_duration"
+                        >Vuokrauksen kesto (päivää):</label
+                    >
+                    <input
+                        type="number"
+                        id="rental_duration"
+                        step="1"
+                        name="rental_duration"
+                    />
+                </div>
+                <div>
+                    <label for="rental_rate">Hinta:</label>
+                    <input
+                        type="number"
+                        id="rental_rate"
+                        step="0.01"
+                        name="rental_rate"
+                    />
+                </div>
+                <div>
+                    <label for="length">Elokuvan kesto (minuutteina):</label>
+                    <input type="number" id="length" name="length" />
+                </div>
+                <div>
+                    <label for="replacement_cost">Korvaushinta:</label>
+                    <input
+                        type="number"
+                        id="replacement_cost"
+                        name="replacement_cost"
+                    />
+                </div>
+                <div>
+                    <label for="rating">Arvosana:</label>
+                    <select id="rating" name="rating">
+                        <option value="G">G</option>
+                        <option value="PG">PG</option>
+                        <option value="PG-13">PG-13</option>
+                        <option value="R">R</option>
+                        <option value="NC-17">NC-17</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="special_features">Erikoisominaisuudet:</label>
+                    <input
+                        class="hidden"
+                        type="text"
+                        id="special_features"
+                        name="special_features"
+                        placeholder=""
+                        readonly
+                    />
+                    <div>
+                        <input type="checkbox" id="trailers" value="Trailers" />
+                        <label for="trailers">Trailers</label>
+                    </div>
+                    <div>
+                        <input
+                            type="checkbox"
+                            id="commentaries"
+                            value="Commentaries"
+                        />
+                        <label for="commentaries">Commentaries</label>
+                    </div>
+                    <div>
+                        <input
+                            type="checkbox"
+                            id="Deleted Scenes"
+                            value="Deleted Scenes"
+                        />
+                        <label for="Deleted Scenes">Deleted Scenes</label>
+                    </div>
+                    <div>
+                        <input
+                            type="checkbox"
+                            id="Behind The Scenes"
+                            value="Behind The Scenes"
+                        />
+                        <label for="Behind The Scenes">Behind The Scenes</label>
+                    </div>
+                </div>
+                <div style="display: none;">
+                    <label for="last_update"
+                        >Viimeinen päivitys (Tulee automaattisesti):
+                    </label>
+                    <input
+                        type="text"
+                        id="last_update"
+                        name="last_update"
+                        readonly
+                    />
+                </div>
+                <!-- <button onclick="dateToSpot()" type="submit">Lisää elokuva</button> -->
+                <button type="button" onclick="autoFillRest()">Lisää elokuva</button>
+            </form>
+        </div>
+        <script>
+            function autoFillRest() {
+                var today = new Date();
+                var dd = String(today.getDate()).padStart(2, '0');
+                var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+                var yyyy = today.getFullYear();
+                var hh = String(today.getHours()).padStart(2, '0');
+                var min = String(today.getMinutes()).padStart(2, '0');
+                var sec = String(today.getSeconds()).padStart(2, '0');
+                var currentDate =
+                    yyyy +
+                    '-' +
+                    mm +
+                    '-' +
+                    dd +
+                    ' ' +
+                    hh +
+                    ':' +
+                    min +
+                    ':' +
+                    sec;
+                document.getElementById('last_update').value = currentDate;
+
+
+                document.getElementById('special_features').value = specFeatures();
+
+                document.getElementById('elokuvaForm').submit();
+            }
+
+            function luoSqlLauseet() {
+                var title = document.getElementById('title').value;
+                var description = document.getElementById('description').value;
+                var category = document.getElementById('category').value;
+                var release_year =
+                    document.getElementById('release_year').value;
+                var language_id = document.getElementById('language_id').value;
+                var rental_duration =
+                    document.getElementById('rental_duration').value;
+                var rental_rate = document.getElementById('rental_rate').value;
+                var length = document.getElementById('length').value;
+                var replacement_cost =
+                    document.getElementById('replacement_cost').value;
+                var rating = document.getElementById('rating').value;
+                var special_features = specFeatures();
+                var last_update = currentDateAndTime();
+
+                var sqlLauseFilm =
+                    "INSERT INTO film (title, description, release_year, language_id, rental_duration, rental_rate, length, replacement_cost, rating, special_features, last_update) VALUES ('" +
+                    title +
+                    "','" +
+                    description +
+                    "','" +
+                    release_year +
+                    "','" +
+                    language_id +
+                    "','" +
+                    rental_duration +
+                    "','" +
+                    rental_rate +
+                    "','" +
+                    length +
+                    "','" +
+                    replacement_cost +
+                    "','" +
+                    rating +
+                    "','" +
+                    special_features +
+                    "','" +
+                    last_update +
+                    "');";
+                console.log(sqlLauseFilm);
+
+                var sqlLauseFilmCategory =
+                    "INSERT INTO film_category (film_id, category_id, last_update) VALUES ('" +
+                    +"','" +
+                    category +
+                    "','" +
+                    last_update +
+                    "');";
+                console.log(sqlLauseFilmCategory);
+
+                return sqlLauseFilm, sqlLauseFilmCategory;
+            }
+
+            function specFeatures() {
+                var specFeatures = '';
+                if (document.getElementById('trailers').checked) {
+                    specFeatures += 'Trailers,';
+                }
+                if (document.getElementById('commentaries').checked) {
+                    specFeatures += 'Commentaries,';
+                }
+                if (document.getElementById('Deleted Scenes').checked) {
+                    specFeatures += 'Deleted Scenes,';
+                }
+                if (document.getElementById('Behind The Scenes').checked) {
+                    specFeatures += 'Behind The Scenes,';
+                }
+                // console.log(specFeatures.replace(/, $/, " "));
+                return specFeatures.replace(/,$/, '');
+            }
+
+            function currentDateAndTime() {
+                var today = new Date();
+                var dd = String(today.getDate()).padStart(2, '0');
+                var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+                var yyyy = today.getFullYear();
+                var hh = String(today.getHours()).padStart(2, '0');
+                var min = String(today.getMinutes()).padStart(2, '0');
+                var sec = String(today.getSeconds()).padStart(2, '0');
+                var currentDate =
+                    yyyy +
+                    '-' +
+                    mm +
+                    '-' +
+                    dd +
+                    ' ' +
+                    hh +
+                    ':' +
+                    min +
+                    ':' +
+                    sec;
+                return currentDate;
+            }
+        </script>
+    </body>
+</html>

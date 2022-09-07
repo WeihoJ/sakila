@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title><%= otsikko %></title>
+        <link rel="stylesheet" type="text/css" href="/styles/suodatin.css" />
+        <link rel="icon" type="image/png" href="/images/whiteLogo.png" />
+    </head>
+    <body>
+        <div class="header">
+            <div class="logo">
+                <a href="/">
+                    <img
+                        src="/images/blueLogo.svg"
+                        alt="Valkoinen logo"
+                        id="headerLogo"
+                    />
+                </a>
+            </div>
+            <div class="links">
+                <a href="/"><button>Pääsivulle</button></a>
+                <a href="/suodatin"><button>Kaikki elokuvat</button></a>
+                <div class="dropdown">
+                    <a><button>Kategoriat</button></a>
+                    <div class="dropdown-content">
+                        <a href="/toiminta">Toiminta</a>
+                        <a href="/animaatio">Animaatio</a>
+                        <a href="/lapsi">Lapsi</a>
+                        <a href="/klassikko">Klassikko</a>
+                        <a href="/komedia">Komedia</a>
+                        <a href="/dokumentti">Dokumentti</a>
+                        <a href="/draama">Draama</a>
+                        <a href="/perhe">Perhe</a>
+                        <a href="/ulkomaalainen">Ulkomaalaiset</a>
+                        <a href="/pelit">Pelit</a>
+                        <a href="/kauhu">Kauhu</a>
+                        <a href="/musiikki">Musiikki</a>
+                        <a href="/uusi">Uutuudet</a>
+                        <a href="/scifi">Sci-Fi</a>
+                        <a href="/urheilu">Urheilu</a>
+                        <a href="/matkailu">Matkailu</a>
+                    </div>
+                </div>
+                <a href="/lisaaElokuva"><button>Lisää elokuva</button></a>
+            </div>
+            <div class="search-container">
+                <form action="/hakuTulos">
+                    <input
+                        type="text"
+                        placeholder="Hae elokuva(t)"
+                        name="search"
+                        value="<%= haku %>"
+                    />
+                    <button type="submit">HAE</button>
+                </form>
+            </div>
+        </div>
+        <div class="slider" id="toiminta">
+            <div class="otsikko upperCase"><%= haku %></div>
+            <% vastaus.forEach((vastaus) => { %> <% function timeConvert(n) { %>
+            <% var num = n; %> <% var hours = (num / 60); %> <% var rhours =
+            Math.floor(hours); %> <% var minutes = (hours - rhours) * 60; %> <%
+            var rminutes = Math.round(minutes); %> <% return rhours + " h " +
+            rminutes + " min"; %> <% } %>
+
+
+            <div class="elokuvaKortti">
+                <h2 class="elokuvaTitle"><%= vastaus.title %></h2>
+                <p class="elokuvaCategory"><%= vastaus.name %></p>
+                <p class="elokuvaPituus"><%= timeConvert(vastaus.length) %></p>
+                <p class="elokuvaHinta"><%= vastaus.rental_rate %> €</p>
+                
+                <div class="hoverSection">
+                    <p class="elokuvaDesc"><%= vastaus.description %></p>
+                    <p class="elokuvaHinta"><%= vastaus.rental_rate %> €</p>
+                    <button>Varaa</button>
+                </div>
+            </div>
+            <% }); %>
+        </div>
+        <hr />
+        <div class="footer">
+            <h2 class="otsikko">Tietoa yrtiyksestä</h2>
+            <p>
+                Sakila on videovuokraamoyritys, joka yrittää pysyä tuottavana
+                markkinaosuuden pienentyessä.
+            </p>
+            <p>Yrityksen edustajina toimivat Vera ja Laura</p>
+        </div>
+    </body>
+</html>

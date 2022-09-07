@@ -1,0 +1,303 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Teko:wght@700&display=swap');
+
+* {
+    --rose-red: #92010c;
+    --light-blue: #20aad8;
+    --dark-grey: #373435;
+    --white: #ffffff;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    background: linear-gradient(
+        to bottom right,
+        var(--rose-red),
+        #5a5657,
+        var(--rose-red)
+    );
+    min-height: 100vh;
+}
+
+.upperCase {
+    text-transform: uppercase;
+}
+
+.hoverSection {
+    display: none;
+}
+
+.hoverSection button {
+    text-transform: uppercase;
+    background-color: var(--rose-red);
+    height: 40px;
+    margin: 6px 0;
+}
+
+.elokuvaKortti .elokuvaDesc {
+    padding: 20px 0 0 0;
+    margin: 0;
+    height: 100px;
+}
+
+.elokuvaKortti:hover .hoverSection {
+    border: unset;
+    height: 200px;
+    margin: 0;
+    display: block;
+    background-color: #20aad8;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    color: #373435;
+    font-weight: 400;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        /* opacity: 0; */
+        transform: translateY(100%);
+    }
+    to {
+        /* opacity: 1; */
+        transform: translateY(0);
+    }
+}
+
+.elokuvaKortti {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: space-around;
+    width: 200px;
+    height: 275px;
+    background-color: var(--dark-grey);
+    color: var(--light-blue);
+    border-radius: 10px;
+    padding: 10px;
+    margin: 5px;
+    min-width: 200px;
+    max-width: 200px;
+    font-family: 'Lato', sans-serif;
+    position: relative;
+    overflow: hidden; 
+}
+
+.elokuvaTitle,
+.elokuvaDesc,
+.elokuvaCategory,
+.elokuvaPituus,
+.elokuvaHinta {
+    margin: 0;
+    padding: 0;
+}
+
+.elokuvaTitle {
+    height: 50px;
+    font-family: 'Lato', sans-serif;
+    font-size: 22.5px;
+}
+
+.elokuvaDesc {
+    height: 125px;
+    border-bottom: white 1px solid;
+}
+
+.elokuvaHinta {
+    font-size: 20px;
+    /* font-weight: 1; */
+}
+
+
+.footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.footer h2 {
+    font-size: 40px;
+    margin: 20px 0px;
+}
+
+.footer p {
+    text-align: center;
+    font-size: 25px;
+    margin: 10px 0px;
+}
+
+.footer :last-child {
+    margin-bottom: 100px;
+}
+
+.slider {
+    padding: 150px 50px 50px 50px;
+    display: flex;
+    flex-wrap: wrap;
+    /* grid-template-columns: repeat(7, fit-content(100%)); */
+    /* gap: 10px; */
+    justify-content: center;
+}
+
+.slider > div {
+    scroll-snap-align: start;
+}
+
+.otsikko {
+    font-family: 'Teko', sans-serif;
+    font-size: 35px;
+    text-align: center;
+    margin-top: 50px;
+    flex-basis: 100%;
+}
+
+hr {
+    color: var(--dark-grey);
+    border-bottom: var(--dark-grey) 3px solid;
+}
+
+button {
+    width: 150px;
+    height: 75px;
+
+    background-color: var(--light-blue);
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+
+    border: none;
+    border-radius: 10px;
+}
+
+a {
+    text-decoration: none;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+.links {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+a {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 15px 50px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    height: 120px;
+    background-color: var(--dark-grey);
+    z-index: 1;
+}
+
+.header #headerLogo {
+    height: 90px;
+    margin: 15px 50px;
+    border-radius: 10px;
+}
+
+/* Dropdown menu */
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none !important;
+    width: 100%;
+    position: absolute;
+    background-color: #f1f1f1;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    overflow: hidden;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 0;
+    margin: 0;
+    text-decoration: none;
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-size: 20px;
+    font-family: 'Lato', sans-serif;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block !important;
+}
+.dropdown:hover .dropdown-content :nth-child(odd) {
+    animation: slideInLeft 0.3s ease-in-out;
+}
+.dropdown:hover .dropdown-content :nth-child(even) {
+    animation: slideInRight 0.3s ease-in-out;
+}
+
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+.dropdown-content > * {
+    border-bottom: #373435 1px solid;
+}
+
+.dropdown .dropdown-content a:hover {
+    font-weight: 700;
+}
+
+.search-container form input[type='text'] {
+    padding: 6px;
+    margin-top: 8px;
+    font-size: 17px;
+    border: none;
+    height: 100%;
+}
+
+.header .search-container button {
+    float: right;
+    padding: 6px 10px;
+    margin-top: 8px;
+    margin-right: 16px;
+    /* background: #ddd; */
+    font-size: 17px;
+    border: none;
+    cursor: pointer;
+    height: 100%;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}

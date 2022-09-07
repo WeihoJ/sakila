@@ -1,0 +1,36 @@
+{
+    "haeToiminta": [
+        "SELECT film.title, film.description, category.name, film.length, film.rental_rate FROM film, category, film_category WHERE film.film_id = film_category.film_id AND film_category.category_id = category.category_id AND category.name = \"Action\";"
+    ],
+    "haeUusi": [
+        "SELECT film.title, film.description, category.name, film.length, film.rental_rate FROM film, category, film_category WHERE film.film_id = film_category.film_id AND film_category.category_id = category.category_id AND category.name = \"New\";"
+    ],
+    "haeToimintaJaUusi": [
+        "SELECT film.title, film.description, category.name, film.length, film.rental_rate FROM film, category, film_category WHERE film.film_id = film_category.film_id AND film_category.category_id = category.category_id AND (category.name = \"Action\" OR category.name = \"New\");"
+    ],
+    "haeKaikki": [
+        "SELECT film.title, film.description, category.name, film.length, film.rental_rate FROM film, category, film_category WHERE film.film_id = film_category.film_id AND film_category.category_id = category.category_id;"
+    ],
+    "haeKymmenen": [
+        "SELECT film.title, film.description, category.name, film.length, film.rental_rate FROM film, category, film_category WHERE film.film_id = film_category.film_id AND film_category.category_id = category.category_id  ORDER BY RAND() LIMIT 10;"
+    ],
+    "haeKategoria": [
+        "SELECT film.title, film.description, category.name, film.length, film.rental_rate FROM film, category, film_category WHERE film.film_id = film_category.film_id AND film_category.category_id = category.category_id AND category.name = ?;"
+    ],
+    "haeElokuvat": [
+        "SELECT film.title, film.description, category.name, film.length, film.rental_rate FROM film, category, film_category WHERE film.film_id = film_category.film_id AND film_category.category_id = category.category_id AND film.title LIKE ?;"
+    ],
+    "haeIsoinId": [
+        "SELECT film_id FROM film ORDER BY film_id DESC LIMIT 1;"
+    ],
+    "lisaaElokuva": [
+        "INSERT INTO film (title, description, release_year, language_id, rental_duration, rental_rate, length, replacement_cost, rating, special_features, last_update) VALUES (?,?,?,?,?,?,?,?,?,?,?);"
+    ],
+    "lisaaElokuva2": [
+        "INSERT INTO film (title, description, release_year, language_id, rental_duration, rental_rate, length, replacement_cost, rating, special_features, last_update) VALUES (?,?,?,?,?,?,?,?,?,?,?); INSERT INTO film_category (film_id, category_id, last_update) VALUES (?,?,?);"
+    ],
+    "lisaaElokuvaLinkki": [
+        "INSERT INTO film_category (film_id, category_id, last_update) VALUES (?,?,?);"
+    ],
+    "perusavain": "film_id"
+}
